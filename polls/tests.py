@@ -32,8 +32,8 @@ class QuestionModelTests(TestCase):
         time = timezone.now() - datetime.timedelta(hours=23, minutes=59, seconds=59)
         recent_question = Question(pub_date=time)
         self.assertIs(recent_question.was_published_recently(), True)
-    
-    def create_question(question_text, days):
+
+def create_question(question_text, days):
         """
         Create a question with the given `question_text` and published the
         given number of `days` offset to now (negative for questions published
@@ -43,6 +43,7 @@ class QuestionModelTests(TestCase):
         return Question.objects.create(question_text=question_text, pub_date=time)
 
 class QuestionIndexViewTests(TestCase):
+
     def test_no_questions(self):
         """
         If no questions exist, an appropriate message is displayed.
@@ -100,6 +101,7 @@ class QuestionIndexViewTests(TestCase):
         )
 
 class QuestionDetailViewTests(TestCase):
+
     def test_future_question(self):
         """
         The detail view of a question with a pub_date in the future
