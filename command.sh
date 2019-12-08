@@ -20,3 +20,4 @@ daphne django3.asgi
 python manage.py startapp news
 python manage.py makemigrations
 python manage.py migrate
+python manage.py startapp polls
