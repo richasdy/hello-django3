@@ -9,6 +9,7 @@ from django.http import Http404
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.views import generic
+from django.utils import timezone
 
 # def index(request):
 #     return HttpResponse("Hello, world. You're at the polls index.")
@@ -36,8 +37,11 @@ class IndexView(generic.ListView):
     context_object_name = 'latest_question_list'
 
     def get_queryset(self):
-        """Return the last five published questions."""
-        return Question.objects.order_by('-pub_date')[:5]
+        """
+        Return the last five published questions (not including those set to be
+        published in the future).
+        """
+        return Question.objects.filter(pub_date__lte=timezone.now()).order_by('-pub_date')[:5]
 
 # def detail(request, question_id):
 #     return HttpResponse("You're looking at question %s." % question_id)
@@ -56,6 +60,12 @@ class IndexView(generic.ListView):
 class DetailView(generic.DetailView):
     model = Question
     template_name = 'polls/detail.html'
+
+    def get_queryset(self):
+        """
+        Excludes any questions that aren't published yet.
+        """
+        return Question.objects.filter(pub_date__lte=timezone.now())
 
 # def results(request, question_id):
 #     response = "You're looking at the results of question %s."
