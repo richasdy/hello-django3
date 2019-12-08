@@ -21,3 +21,7 @@ python manage.py startapp news
 python manage.py makemigrations
 python manage.py migrate
 python manage.py startapp polls
+python manage.py makemigrations polls
+python manage.py sqlmigrate polls 0001
+python manage.py migrate
+python manage.py shell
