@@ -7,3 +7,4 @@ touch requirements.txt
 virtualenv venv
 source venv/bin/activate
 pip install -r requirements.txt
+django-admin startproject django3 .
