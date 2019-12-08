@@ -18,3 +18,5 @@ python manage.py collectstatic
 gunicorn django3.wsgi
 daphne django3.asgi
 python manage.py startapp news
+python manage.py makemigrations
+python manage.py migrate
