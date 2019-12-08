@@ -17,3 +17,4 @@ python manage.py createsuperuser
 python manage.py collectstatic
 gunicorn django3.wsgi
 daphne django3.asgi
+python manage.py startapp news
