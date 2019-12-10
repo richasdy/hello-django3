@@ -62,3 +62,8 @@ python manage.py shell
 # response.content
 # response.context['latest_question_list']
 # -------- test -------- #
+python setup.py sdist
+python -m pip install django3-polls-richasdy/dist/django3-polls-richasdy-0.1.tar.gz
+python -c "import django3-polls-richasdy; print(django3-polls-richasdy.__path__)" #error
+pip show django3-polls-richasdy
+python -m pip uninstall django3-polls-richasdy
